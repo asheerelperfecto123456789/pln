@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="leaflet.css">
+
+  <script src="leaflet.js"></script>
+<link rel="stylesheet" href="jquery.mobile-1.4.5.css">
+
+<script src="jquery.js"></script>
+
+<script src="jquery.mobile-1.4.5.js"></script>
+<script type="text/javascript">
+
+      if(navigator.geolocation==undefined){
+      //alert("Geolocation undefined");
+    }else{
+      //alert("Geolocation Available");
+      navigator.geolocation.getCurrentPosition(userLocated, locationError);
+      function userLocated(position){
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+
+        //alert("Lat:"+latitude+",Long:"+longitude);
+
+
+            var mymap = L.map('mapid').setView([latitude, longitude], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', { maxZoom: 18, attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+id: 'mapbox.streets'
+    }).addTo(mymap);
+
+
+L.marker([latitude, longitude]).addTo(mymap)
+    .bindPopup("You're here.")
+     .openPopup();
+
+     var circle = L.circle([-20.167986, 57.502184], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+     var circle = L.circle([-20.191589, 57.719225], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+       var circle = L.circle([-20.405063, 57.593647], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+        var circle = L.circle([-20.096558, 57.559925], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+
+var circle = L.circle([-20.278023, 57.476515], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+var circle = L.circle([-20.059157, 57.685687], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+var circle = L.circle([-20.521280, 57.523853], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+circle.bindPopup("I am a circle.");
+
+      }
+      function locationError(error){
+        switch(error.code){
+          case error.PERMISSION_DENIED:
+          alert("Permission Denied-" + error.message);
+          break;
+          
+          case error.POSITION_UNAVAILABLE:
+          alert("Position Not Available-" + error.message);
+          break;
+
+          case error.TIMEOUT:
+          alert("Request Time Out-" + error.message);
+          break;
+        }
+      }//end the function
+    }//end else block
+
+
+
+	function getans(){
+		var total=0;
+		var answer1= document.getElementsByName("ans1");
+		var answer2= document.getElementsByName("ans2");
+		var answer3= document.getElementsByName("ans3");
+		var answer4= document.getElementsByName("ans4");
+		var answer5= document.getElementsByName("ans5");
+		var answer6= document.getElementsByName("ans6");
+		var answer7= document.getElementsByName("ans7");
+		var answer8= document.getElementsByName("ans8");
+		var answer9= document.getElementsByName("ans9");
+		var answer10= document.getElementsByName("ans10");
+
+		if(answer1[1].checked){
+            total=total+1;
+          		
+		}
+		if(answer2[1].checked){
+            total=total+1;			
+		}
+		if(answer3[0].checked){
+            total=total+1;			
+		}
+		if(answer4[1].checked){
+            total=total+1;			
+		}
+		if(answer5[0].checked){
+            total=total+1;			
+		}
+		if(answer6[0].checked){
+            total=total+1;			
+		}
+		if(answer7[1].checked){
+            total=total+1;			
+		}
+		if(answer8[1].checked){
+            total=total+1;			
+		}
+		if(answer9[0].checked){
+            total=total+1;			
+		}
+		if(answer9[0].checked){
+            total=total+1;			
+		}
+if(answer10[0].checked){
+            total=total+1;      
+    }
+
+
+		var message="";
+		if (total<4) {
+        message=" your knowledge about lung cancer is low"
+		}
+		else if (total<8) {
+        message="your knowledge about lung cancer is average"
+		}
+		else if(total>7){
+			message=" your knowledge about lung cancer is high"
+		}
+		var finalemes="total score is "+total+" "+message;
+		//alert("total score is "+total+message);
+
+		
+		document.getElementById("demo").innerHTML = finalemes;
+    var d = new Date();
+    const key = d;
+    const value = total;
+    localStorage.setItem(key,value);
+     
+
+		
+     
+	
+	}
+</script>
+
+
+</head>
+
+<body>
+	<div data-role="page" id="Home">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+            
+            <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+
+
+        </div>
+
+
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   -->
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+        	<div data-role="navbar" data-iconpos="top">
+            <ul>
+            	<li><a href="#definition" data-icon="plus" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>What is Lung Cancer?</a></li>
+            	<li><a href="#symptom" data-icon="eye" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>Basic Information</a></li>
+            	<li><a href="#stages" data-icon="alert" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>Risk Factor and Stages</a></li>
+            	<li><a href="#map" data-icon="location" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>Check Nearest Hospitals</a></li>
+            	<li><a href="#quiz" data-icon="clock" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>Quiz</a></li>
+            	<li><a href="#feedback" data-icon="mail" style="margin:10px 10px 10px 10px;" data-theme="b" data-transition>Quiz Result</a></li>
+            </ul>
+       </div>
+
+        </div>
+        
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of homepage-->
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+
+
+    <div data-role="page" id="definition">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+            
+           <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+
+
+        </div>
+
+
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   -->
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+        	<h1 align="center">Definition</h1>
+        	<p>Lung Cancer is a Cancer that forms in tissues of the lung, usually in the cells lining air passages. The two main types are small cell lung cancer and non-small cell lung cancer. These types are diagnosed based on how the cells look under a microscope.</p>
+        	<div align="center"><img src="def.jpg" align="center" width="300"></div>
+
+        	<p>Anatomy of the respiratory system, showing the trachea and both lungs and their lobes and airways. Lymph nodes and the diaphragm are also shown. Oxygen is inhaled into the lungs and passes through the thin membranes of the alveoli and into the bloodstream (see inset).</p>
+        	<h1 align="center">Statistics</h1>
+        	<ul>
+        		<li>In 2011:1,800 new cases of cancer were detected.</li>
+        		<li>In 2011: 69 new cases of lung cancer for men</li>
+        		<li>In 2011:97 deaths in men</li>
+        		<div align="center"><img src="images/lung.png" width="300"></div>
+        	</ul>
+
+        </div>
+        
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of homepage-->
+     <div data-role="page" id="quiz">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+            
+            <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+
+
+        </div>
+
+
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   -->
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+        	<form>
+        		<legend><b>1.If you’ve never smoked, you don’t need to worry about lung cancer.</b></legend>
+		        
+		        <input type="radio" name="ans1" id="ans1t" value="True" >
+		        <label for="ans1t">True</label> 
+
+		        <input type="radio" name="ans1" id="ans1f" value="False">
+		        <label for="ans1f">False</label> 
+
+		        <legend><b>2.There’s nothing people can do to decrease their chances of getting lung cancer.</b></legend>
+		        
+		        <input type="radio" name="ans2" id="ans2t" value="True">
+		        <label for="ans2t">True</label> 
+
+		        <input type="radio" name="ans2" id="ans2f" value="False">
+		        <label for="ans2f">False</label> 
+
+		         <legend><b>3.The lung damage that leads to cancer can be repaired by quitting smoking.</b></legend>
+		        
+		        <input type="radio" name="ans3" id="ans3t" value="True">
+		        <label for="ans3t">True</label> 
+
+		        <input type="radio" name="ans3" id="ans3f" value="False">
+		        <label for="ans3f">False</label>
+
+		          <legend><b>4.Replacing cigarettes with spit tobacco or snuff is a safe way to decrease lung cancer risk.</b></legend>
+		        
+		        <input type="radio" name="ans4" id="ans4t" value="True">
+		        <label for="ans4t">True</label> 
+
+		        <input type="radio" name="ans4" id="ans4f" value="False">
+		        <label for="ans4f">False</label> 
+
+		        <legend><b>5.Lung cancer is one of the deadliest cancers.</b></legend>
+		        
+		        <input type="radio" name="ans5" id="ans5t" value="True">
+		        <label for="ans5t">True</label> 
+
+		        <input type="radio" name="ans5" id="ans5f" value="False">
+		        <label for="ans5f">False</label> 
+
+
+		        <legend><b>6.Lung cancer often doesn’t cause problems until it’s too late to cure it.</b></legend>
+		        
+		        <input type="radio" name="ans6" id="ans6t" value="True">
+		        <label for="ans6t">True</label> 
+
+		        <input type="radio" name="ans6" id="ans6f" value="False">
+		        <label for="ans6f">False</label>
+
+
+
+		        
+		      
+		        <legend><b>7.There is no known way todetect lung cancer at an early and treatable stage</b></legend>
+		        
+		        <input type="radio" name="ans7" id="ans7t" value="True">
+		        <label for="ans7t">True</label> 
+
+		        <input type="radio" name="ans7" id="ans7f" value="False">
+		        <label for="ans7f">False</label>
+		       
+
+		       
+
+		        <legend><b>8.Surgery and needle biopsies can cause lung cancer to spread</b></legend>
+		        
+		        <input type="radio" name="ans8" id="ans8t" value="True">
+		        <label for="ans8t">True</label> 
+
+		        <input type="radio" name="ans8" id="ans8f" value="False">
+		        <label for="ans8f">False</label>
+		      
+		        
+
+		        <legend><b>9.Exposure to certain industrial substances, such as arsenic, some organicchemicals, radon and asbestos leads to lung cancer</b></legend>
+		        
+		        <input type="radio" name="ans9" id="ans9t" value="True">
+		        <label for="ans9t">True</label> 
+
+		        <input type="radio" name="ans9" id="ans9f" value="False">
+		        <label for="ans9f">False</label>
+		        
+		        
+		        <legend><b>10.Low dose computed tomography(LDCT) is the best screening test for lung cancer</b></legend>
+		        
+		        <input type="radio" name="ans10" id="ans10t" value="True">
+		        <label for="ans10t">True</label> 
+
+		        <input type="radio" name="ans10" id="ans10f" value="False">
+		        <label for="ans10f">False</label>
+		        <p id="demo" align="center" style="color: red;"></p> 
+		        <input type="button" name="btnsubmit" onclick="getans();" value="submit" id="demo">  <br>
+
+		        
+
+
+        	</form>
+        </div>
+        
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of homepage-->
+
+<div data-role="page" id="symptom">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+            
+            <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+        </div>
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+        	<h1 align="center">Symptoms</h1>
+        	<ul>
+        		<li>Unexplained chronic cough</li>
+        		<li>Repeated attack of lung infection</li>
+        		<li>Constant chess pain</li>
+        		<li>Loss of apetit</li>
+        		<li>Weigh loss</li>
+        		<li>Feeling tired and weak</li>
+        		<li>Hoarness</li>
+        		<li>Bone Pain</li>
+        		<li>Nervous system(Such as headache, weakness, sizziness, balace problem and seizure)</li>
+        		<li>Yellowing of the skin and eyes (jaundice)</li>
+        	</ul>
+        	<div align="center">
+   <video id="videos" width="320" height="240" controls align poster="new.jpg">
+  <source src="symptom.mp4" type="video/mp4">
+  <source src="symptom.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+</div>
+<h1 align="center">Prevention</h1>
+<ul>
+	<li>Dont Smoke</li>
+	<li>If you are a smoker do not smoke when others are present</li>
+	<div align="center"><img src="smoking.jpg" width="300"></div>
+	<li>Be careful and aware at work</li>
+	<li>Stay away when someone is smoking(Avoid second hand smokers)</li>
+	<li>Do Regular Exercising</li>
+</ul>
+<div align="center">
+   <video id="videos" width="320" height="240" controls poster="new.jpg">
+  <source src="prevention.mp4" type="video/mp4">
+  <source src="prevention.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+</div>
+        </div>
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of homepage-->
+
+    <div data-role="page" id="map">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+                    <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+        </div>
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+          <h1 align="center" >Your Current Position</h1>
+        <div align="center"><div id="mapid" style="width: 300px; height: 200px;"></div></div>
+        </div>
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+    </div> <!-- End of homepage-->
+
+    <div data-role="page" id="feedback">
+
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">
+            
+            <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+
+
+        </div>
+
+
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   -->
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+    
+    <fieldset>
+      <legend></legend>
+      <h2 align="center">Quiz Result</h2>
+
+    
+    <p id="isOutput"></p>
+
+  </fieldset>
+</form>
+        </div>
+        
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of homepage-->
+
+<script type="text/javascript">
+  
+  //const inpKey = document.getElementById("inpKey");
+ 
+
+  for(let i = 0; i< localStorage.length; i++){
+
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+
+
+
+    //isOutput.innerHTML += key+value+"<br/>";
+    isOutput.innerHTML += "<span style='color:red;'>Date  :</span> "+`${key} `+ "<br/> <br/>"+"<span style='color:red;'>Your quiz point is  :</span> "+`${value}`+"<br/><hr><br/>";
+
+  }
+
+
+    btnClear.onclick = function(){
+      localStorage.clear();
+      location.reload();
+  
+  };
+
+  
+</script>
+
+
+    <div data-role="page" id="stages">
+        <div data-role="panel" id="menuPanel" data-display="push" data-theme="b">           <h2>Menu</h2>
+            <a href="#Home" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-home ui-btn-icon-left">Home</a> <br/>
+            <a href="#definition" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-edit ui-btn-icon-left">Definition and Statistic</a> 
+            <br/>
+             <a href="#symptom" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Basic Information</a> <br/>
+             <a href="#stages" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Risk Factor and Stages</a> <br/>
+              <a href="#map" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Your Location</a> <br/>
+               <a href="#quiz" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-info ui-btn-icon-left" >Quiz</a> <br/>
+            <a href="#Home" data-rel="close" class="ui-btn ui-btn-inline ui-btn-corner-all ui-icon ui-icon-delete ui-btn-icon-left">Close Menu</a>
+
+        </div>
+        <div data-role="panel" id="SearchPanel" data-display="overlay" data-position="right" data-position-fixed="true" data-theme="b">
+             <h2>Search:</h2>
+
+             <form>
+
+                <input type="text" name="searchbox" placeholder="Enter keywords" data-clear-btn="true" style="background-color: white; color: black;">
+
+             </form>
+             
+             <a href="#" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-search">Search</a>
+             <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-left ui-icon-delete">Close Panel</a> 
+
+        </div> 
+        <div data-role="header">
+            
+            <h1>Lung Cancer</h1>
+            <a href="#menuPanel" class="ui-btn ui-btn-inline ui-icon-bars" >Menu</a>
+            <a href="#SearchPanel" class="ui-btn ui-btn-inline ui-icon ui-btn-icon-right ui-icon-search">Search</a>
+
+        </div>
+        <div data-role="main" class=" ui-content ui-responsive" data-theme="b">
+          <h1 align="center">Risk Factor</h1>
+          <ul>
+            <li>Tobacco smoking</li>
+            <li>Exposure at work-workers who are exposed to carcinugenic substances have an increase risk of developing lung cancer.</li>
+            <li>Air pollution</li>
+            <div align="center"><img src="airpll.jpg" width="300"></div>
+            <li>Exposure to radon gas</li>
+            <div align="center">
+              <video id="videos" width="320" height="240" controls align poster="new.jpg">
+  <source src="rf.mp4" type="video/mp4">
+  <source src="rf.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+            </div>
+          </ul>
+        	<h1 align="center">Stages</h1>
+        	<p>Cancer stages tell how far the cancer has spread and help guide treatment. The chance of successful or curative treatment is much higher when lung cancer is diagnosed and treated in the early stages, before it spreads. Because lung cancer doesn’t cause obvious symptoms in the earlier stages, diagnosis often comes after it has spread.
+        	</p>
+        	<div align="center"><img src="stage.jpg" width="300"></div>
+        	<p>Non-small cell lung cancer has four main stages:</p>
+        	<ul>
+        		<li>Stage 1: Cancer is found in the lung, but it has not spread outside the lung. </li>
+        		<li>Stage 2: Cancer is found in the lung and nearby lymph nodes.</li>
+        		<li>Stage 3: Cancer is in the lung and lymph nodes in the middle of the chest.</li>
+        		<li>Stage 3A: Cancer is found in lymph nodes, but only on the same side of the chest where cancer first started growing.</li>
+        		<li>Stage 3B: Cancer has spread to lymph nodes on the opposite side of the chest or to lymph nodes above the collarbone.</li>
+        			<li>
+Stage 4: Cancer has spread to both lungs, into the area around the lungs, or to distant organs.Stage 4 lung cancer life expectancy can vary considerably among different people, even among people who have the same type and stage of lung cancer.</li>
+
+        	</ul>
+  Small-cell lung cancer (SCLC) has two main stages.
+  <div align="center"><img src="stage1.jpg" width="300"></div><br>
+  
+
+        <div data-role="footer">
+            
+            <h3>Test - Utm Website</h3>
+
+        </div>
+
+    </div> <!-- End of stages-->
+
+
+
+
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
